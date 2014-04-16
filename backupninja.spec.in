@@ -1,27 +1,32 @@
-%define name    @PACKAGE_NAME@
-%define version @PACKAGE_VERSION@
-
 Summary:    Backupninja backup tool
-Name:       %{name}
-Version:    %{version}
+Name:       backupninja
+Version:    trunk
 Release:    1
 License:    GPL
 Group:      Applications/System
 URL:        https://labs.riseup.net/code/projects/show/backupninja
-Source:     %{name}-%{version}.tar.gz
-Requires:   bash, gawk, rdiff-backup, gzip
-Provides:   %{name}
-Packager:   Petr Klima <Petr.Klima@madeta-group.cz>
+Source:     %{name}-%{version}.tar.bz2
+Requires:   bash, gawk, rdiff-backup, gzip, cron, logrotate, rdiff-backup
+BuildRequires: automake
+BuildRequires: -post-build-checks
 BuildRoot:  %{_tmppath}/%{name}-%{version}
-Prefix:     %{_prefix}
 
 %description
-Modular rdiff.backup tool
+Backupninja allows you to coordinate system backup by dropping a few
+simple configuration files into /etc/backup.d/. Most programs you 
+might use for making backups don't have their own configuration file format. 
+Backupninja provides a centralized way to configure and schedule many 
+different backup utilities. It allows for secure, remote, incremental 
+filesytem backup (via rdiff-backup), compressed incremental data, 
+backup system and hardware info, encrypted remote backups (via duplicity), 
+safe backup of MySQL/PostgreSQL databases, subversion or trac repositories, 
+burn CD/DVDs or create ISOs, incremental rsync with hardlinking.
 
 %prep
 %setup -q
 
 %build
+./autogen.sh
 %configure
 make
 
@@ -39,6 +44,8 @@ rm -fr %{buildroot}
 %files
 %defattr(-,root,root,-)
 %{_sbindir}/*
+%dir %{_datadir}/backupninja
+%dir %{_libdir}/backupninja
 %{_datadir}/backupninja/*
 %{_libdir}/backupninja/*
 
