@@ -6,7 +6,7 @@ License:    GPL
 Group:      Applications/System
 URL:        https://labs.riseup.net/code/projects/show/backupninja
 Source:     %{name}-%{version}.tar.bz2
-Requires:   bash, gawk, rdiff-backup, gzip, cron, logrotate, rdiff-backup
+Requires:   bash, gawk, rdiff-backup, gzip, cron, logrotate, rdiff-backup, dialog
 BuildRequires: automake
 BuildRequires: -post-build-checks
 BuildRoot:  %{_tmppath}/%{name}-%{version}
