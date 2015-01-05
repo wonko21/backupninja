@@ -4,7 +4,7 @@ Version:    trunk
 Release:    1
 License:    GPL
 Group:      Applications/System
-URL:        https://labs.riseup.net/code/projects/show/backupninja
+URL:        https://labs.riseup.net/code/projects/backupninja 
 Source:     %{name}-%{version}.tar.bz2
 Requires:   bash, gawk, rdiff-backup, gzip, cron, logrotate, rdiff-backup, dialog
 BuildRequires: automake
